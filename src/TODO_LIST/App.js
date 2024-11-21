@@ -5,8 +5,7 @@ import Liste from './Liste';
 
 export default function App() {
   return (
-    <div style={{paddingLeft:40}}>
-      
+    <div>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Liste />}/>

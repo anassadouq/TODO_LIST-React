@@ -36,11 +36,11 @@ export default function Liste() {
     };
 
     return (
-        <div>
+        <div className="mx-5">
             <h1 className="text-center">TODO LIST</h1>
 
             <Link to="/create">
-                <button className="btn btn-warning my-3">Add new Task</button>
+                <button className="btn btn-warning my-3">Add a new Task</button>
             </Link>
 
             <table width="90%">
