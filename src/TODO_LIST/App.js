@@ -6,12 +6,12 @@ export default function App() {
   const [tasks, setTasks] = useState([]);
   const [editTask, setEditTask] = useState(null);
 
-  // Add a new Task
+  // Add a new task
   const addTask = (task) => {
-    setTasks([...tasks, { id: task.id, ...task}]);
+    setTasks([...tasks, { id: Date.now(), ...task, completed: false }]);
   };
 
-  // Update a task
+  // Update an existing task
   const updateTask = (id, taskUpdate) => {
     setTasks(tasks.map((task) => (task.id === id ? { ...task, ...taskUpdate } : task)));
     setEditTask(null);
@@ -23,7 +23,7 @@ export default function App() {
   };
 
   return (
-    <div className="mx-5">
+    <div className="App mx-5">
       <h1 className="text-center">TODO LIST</h1>
       <Formulaire addTask={addTask} editTask={editTask} updateTask={updateTask} /> <hr/>
       <Liste tasks={tasks} deleteTask={deleteTask} setEditTask={setEditTask} />
