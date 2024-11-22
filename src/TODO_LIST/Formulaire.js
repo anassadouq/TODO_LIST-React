@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 
-export default function TaskForm({ addTodo, editTodo, updateTodo }) {
+export default function Formulaire({ addTask, editTask, updateTask }) {
     const [description, setDescription] = useState("");
     const [priority, setPriority] = useState("");
     const [deadline, setDeadline] = useState("");
     const [status, setStatus] = useState("");
 
-    // Populate form fields if editing a todo
+    // Populate form fields if editing a Task
     useEffect(() => {
-        if (editTodo) {
-            setDescription(editTodo.description || "");
-            setPriority(editTodo.priority || "");
-            setDeadline(editTodo.deadline || "");
-            setStatus(editTodo.status || "");
+        if (editTask) {
+            setDescription(editTask.description);
+            setPriority(editTask.priority);
+            setDeadline(editTask.deadline);
+            setStatus(editTask.status);
         }
-    }, [editTodo]);
+    }, [editTask]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -23,12 +23,12 @@ export default function TaskForm({ addTodo, editTodo, updateTodo }) {
             description, priority, deadline, status
         };
 
-        if (editTodo) {
+        if (editTask) {
             // Update the existing task
-            updateTodo(editTodo.id, taskData);
+            updateTask(editTask.id, taskData);
         } else {
             // Add a new task
-            addTodo(taskData);
+            addTask(taskData);
         }
 
         // Reset form fields and exit edit mode
@@ -77,7 +77,7 @@ export default function TaskForm({ addTodo, editTodo, updateTodo }) {
                         <td></td>
                         <td>
                             <button type="submit" className="form-control btn btn-dark my-1">
-                                {editTodo ? "Update" : "Add"}
+                                {editTask ? "Update" : "Add"}
                             </button>
                         </td>
                     </tr>

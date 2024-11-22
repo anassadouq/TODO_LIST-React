@@ -13,7 +13,7 @@ const getPriorityClass = (priority) => {
     }
 };
 
-export default function TodoList({ todos, deleteTodo, setEditTodo, handleStatusChange }) {
+export default function Liste({ tasks, deleteTask, setEditTask }) {
     return (
         <table width="90%">
             <thead>
@@ -27,28 +27,28 @@ export default function TodoList({ todos, deleteTodo, setEditTodo, handleStatusC
             </thead>
 
             <tbody>
-                {todos.map((todo) => (
-                    <tr key={todo.id}>
+                {tasks.map((task) => (
+                    <tr key={task.id}>
                         <td>
-                            {todo.status === "100" ? (
-                                <s>{todo.description}</s>
+                            {task.status === "100" ? (
+                                <s>{task.description}</s>
                             ) : (
-                                <label>{todo.description}</label>
+                                <label>{task.description}</label>
                             )}
                         </td>
                         <td>
-                            <button className={getPriorityClass(todo.priority)} style={{ width: "80%" }}>
-                                {todo.priority}
+                            <button className={getPriorityClass(task.priority)} style={{ width: "80%" }}>
+                                {task.priority}
                             </button>
                         </td>
-                        <td>{todo.deadline}</td>
+                        <td>{task.deadline}</td>
                         <td>
-                            <input type="range" min="0" max="100" value={todo.status} onChange={(e) => handleStatusChange(todo.id, e.target.value)}/>
-                            <span>{todo.status}%</span>
+                            <input type="range" min="0" max="100" value={task.status}/>
+                            <span>{task.status}%</span>
                         </td>
                         <td>
-                            <button onClick={() => setEditTodo(todo)} className="btn btn-secondary mx-1 my-1">Edit</button>
-                            <button onClick={() => deleteTodo(todo.id)} className="btn btn-danger mx-1">Delete</button>
+                            <button onClick={() => setEditTask(task)} className="btn btn-secondary mx-1 my-1">Edit</button>
+                            <button onClick={() => deleteTask(task.id)} className="btn btn-danger mx-1">Delete</button>
                         </td>
                     </tr>
                 ))}

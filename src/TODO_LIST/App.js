@@ -1,32 +1,32 @@
 import React, { useState } from "react";
-import TodoList from "./TodoList";
-import TaskForm from "./TaskForm";
+import Liste from "./Liste";
+import Formulaire from "./Formulaire";
 
 export default function App() {
-  const [todos, setTodos] = useState([]);
-  const [editTodo, setEditTodo] = useState(null);
+  const [tasks, setTasks] = useState([]);
+  const [editTask, setEditTask] = useState(null);
 
-  // Add a new todo
-  const addTodo = (todo) => {
-    setTodos([...todos, { id: Date.now(), ...todo, completed: false }]);
+  // Add a new Task
+  const addTask = (task) => {
+    setTasks([...tasks, { id: task.id, ...task}]);
   };
 
-  // Update an existing todo
-  const updateTodo = (id, updatedTodo) => {
-    setTodos(todos.map((todo) => (todo.id === id ? { ...todo, ...updatedTodo } : todo)));
-    setEditTodo(null);
+  // Update a task
+  const updateTask = (id, taskUpdate) => {
+    setTasks(tasks.map((task) => (task.id === id ? { ...task, ...taskUpdate } : task)));
+    setEditTask(null);
   };
 
-  // Delete a todo
-  const deleteTodo = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
+  // Delete a task
+  const deleteTask = (id) => {
+    setTasks(tasks.filter((task) => task.id !== id));
   };
 
   return (
-    <div className="App mx-5">
+    <div className="mx-5">
       <h1 className="text-center">TODO LIST</h1>
-      <TaskForm addTodo={addTodo} editTodo={editTodo} updateTodo={updateTodo} /> <hr/>
-      <TodoList todos={todos} deleteTodo={deleteTodo} setEditTodo={setEditTodo} />
+      <Formulaire addTask={addTask} editTask={editTask} updateTask={updateTask} /> <hr/>
+      <Liste tasks={tasks} deleteTask={deleteTask} setEditTask={setEditTask} />
     </div>
   );
 }
