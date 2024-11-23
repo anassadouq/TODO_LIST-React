@@ -8,13 +8,13 @@ export default function App() {
 
   // Add a new task
   const addTask = (task) => {
-    setTasks([...tasks, { id: Date.now(), ...task, completed: false }]);
+    setTasks([...tasks, { id: Date.now(), ...task }]); //Use Date.now() to generate a unique id for each task
   };
 
-  // Update an existing task
+  // Update a task
   const updateTask = (id, taskUpdate) => {
     setTasks(tasks.map((task) => (task.id === id ? { ...task, ...taskUpdate } : task)));
-    setEditTask(null);
+    setEditTask();
   };
 
   // Delete a task
